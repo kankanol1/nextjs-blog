@@ -1,209 +1,46 @@
-import Head from 'next/head'
+/*https://www.nextjs.cn/learn/basics/create-nextjs-app/editing-the-page*/
 
-export default function Home() {
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+
+import Layout from "./components/layout";
+import Item from  './components/item/index'
+
+export default function Home(props) {
+  const {data} = props;
   return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+      <Layout home>
+        <Grid container spacing={1}>
+          {data.map((i,k)=> <Item key={k} data={i}/>)}
+        </Grid>
+      </Layout>
   )
 }
+
+export async function getStaticProps() {
+  const context = "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.";
+  // img 路径拼接
+  const img="https://image.baidu.com/search/acjson?tn=resultjson_com&logid=8607666919302990327&ipn=rj&ct=201326592&is=&fp=result&queryWord=%E6%99%AF%E8%89%B2%E5%9B%BE%E7%89%87&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=-1&z=&ic=&hd=&latest=&copyright=&word=%E6%99%AF%E8%89%B2%E5%9B%BE%E7%89%87&s=&se=&tab=&width=&height=&face=0&istype=2&expermode=&force=&pn=10";
+  const res = await fetch(img)
+  const imgs = await res.json();
+  let data = [
+    {id:1,context:context,label:'LY',http:'https',date:'2019-11.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '临沂市渣土车',href:'/', img:imgs},
+    {id:2,context:context,label:'DY',http:'https',date:'2019-06.12',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '东营筑网栖息地',href:'/',img:img},
+    {id:3,context:context,label:'LY',http:'https',date:'2016-05.06',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '临沂人车伴随系统',href:'/',img:img},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:img},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:img},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:img},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:img},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:"https://uploadbeta.com/api/pictures/random/"},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:"https://uploadbeta.com/api/pictures/random/"},
+    {id:4,context:context,label:'JN',http:'https',date:'2012-07.23',inip:'192.168.1.23',outip:'105.214.23.45',outport: 2342,inport:2323,name: '济南交警平台',href:'/', img:"https://bing.ioliu.cn/v1/rand"},
+  ]
+  data = data.map((i,k)=>{
+    return {
+      ...i,
+      img: imgs.data[k].thumbURL
+  }
+  })
+  return {props: {data}}
+}
+

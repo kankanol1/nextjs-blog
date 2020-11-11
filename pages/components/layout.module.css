@@ -1,0 +1,27 @@
+.container {
+    margin: 1rem;
+}
+
+.nav{
+    background-color:#eee;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerImage {
+    width: 6rem;
+    height: 6rem;
+}
+
+.headerHomeImage {
+    width: 6rem;
+    height: 6rem;
+}
+
+.backToHome {
+    margin: 3rem 0 0;
+}

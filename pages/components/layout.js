@@ -32,10 +32,15 @@ export default function Layout({children, home}) {
         <header className={styles.header}>
           {home ? (
               <>
-                <img
-                    src="/images/gl.jpg"
-                    className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-                    alt={name}/>
+                <Link href="http://www.gl-data.com">
+                  <a>
+                    <img
+                        src="/images/gl.jpg"
+                        className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                        alt={name}
+                    />
+                  </a>
+                </Link>
                 <h2 className={utilStyles.heading2Xl}>{name}</h2>
               </>
           ) : (
